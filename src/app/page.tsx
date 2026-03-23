@@ -1,3 +1,5 @@
+import Year from "@/components/Year";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-zinc-50 antialiased">
@@ -424,7 +426,7 @@ export default function Home() {
                     </div>
 
                     <a
-                      href="#"
+                      href="#pricing"
                       className="mt-6 block w-full rounded-full bg-white px-6 py-3 text-center text-sm font-semibold text-black transition hover:bg-zinc-200"
                       aria-label="Start TrustBeacon AI"
                     >
@@ -497,7 +499,7 @@ export default function Home() {
         <section className="border-t border-white/5 bg-black/60">
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-10 sm:px-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="text-sm text-zinc-400">
-              © {new Date().getFullYear()} TrustBeacon AI. All rights reserved.
+              © <Year /> TrustBeacon AI. All rights reserved.
             </div>
             <div className="flex flex-wrap items-center gap-4">
               <a className="text-sm text-zinc-300 hover:text-zinc-100" href="#how-it-works">
