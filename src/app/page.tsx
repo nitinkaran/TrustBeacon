@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Year from "@/components/Year";
 
 export default function Home() {
@@ -26,12 +27,12 @@ export default function Home() {
             </a>
           </nav>
 
-          <a
-            href="#pricing"
+          <Link
+            href="/login"
             className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-zinc-200"
           >
             Get started
-          </a>
+          </Link>
         </div>
       </header>
 
@@ -49,17 +50,19 @@ export default function Home() {
                 <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-200">
                   Built for US businesses who want more 5-star reviews
                 </p>
+
                 <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
                   Turn happy customers into{" "}
                   <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-sky-400 bg-clip-text text-transparent">
                     5-star reviews
                   </span>
                   — automatically.
-                </h1>
+          </h1>
+
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
                   TrustBeacon AI helps US businesses connect Stripe, send
-                  personalized AI review invites, and steadily grow
-                  star-rating momentum.
+                  personalized AI review invites, and steadily grow star-rating
+                  momentum.
                 </p>
 
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -97,9 +100,7 @@ export default function Home() {
                         />
                       </svg>
                     </span>
-                    <span>
-                      AI invites that sound natural (not spammy)
-                    </span>
+                    <span>AI invites that sound natural (not spammy)</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-fuchsia-500/20 ring-1 ring-fuchsia-400/30">
@@ -120,7 +121,7 @@ export default function Home() {
                         />
                       </svg>
                     </span>
-                    <span>Simple setup: Stripe -> invites -> reviews</span>
+                    <span>Simple setup: Stripe -&gt; invites -&gt; reviews</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-sky-500/20 ring-1 ring-sky-400/30">
@@ -141,7 +142,9 @@ export default function Home() {
                         />
                       </svg>
                     </span>
-                    <span>Designed to help you earn consistent 5-star momentum</span>
+                    <span>
+                      Designed to help you earn consistent 5-star momentum
+                    </span>
                   </li>
                 </ul>
 
@@ -153,7 +156,9 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                    <div className="text-sm font-semibold">Built for US businesses</div>
+                    <div className="text-sm font-semibold">
+                      Built for US businesses
+                    </div>
                     <div className="mt-1 text-xs text-zinc-400">
                       Messaging tuned for local expectations
                     </div>
@@ -187,7 +192,8 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="mt-2 text-sm text-zinc-300">
-                        Pull purchase signals to know when to request feedback.
+                        Pull purchase signals to request feedback at the right
+                        time.
                       </div>
                     </div>
                     <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
@@ -198,12 +204,15 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="mt-2 text-sm text-zinc-300">
-                        Personalized invites that encourage honest, detailed reviews.
+                        Personalized invites that encourage honest, detailed
+                        reviews.
                       </div>
                     </div>
                     <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
                       <div className="flex items-center justify-between">
-                        <div className="text-sm font-semibold">Get 5-Star Reviews</div>
+                        <div className="text-sm font-semibold">
+                          Get 5-Star Reviews
+                        </div>
                         <div className="text-xs font-semibold text-sky-200">
                           Step 3
                         </div>
@@ -222,12 +231,12 @@ export default function Home() {
                           Pricing is straightforward. Upgrade anytime.
                         </div>
                       </div>
-                      <a
-                        href="#pricing"
+                      <Link
+                        href="/login"
                         className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-zinc-200"
                       >
                         Choose plan
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -255,34 +264,26 @@ export default function Home() {
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
               <div className="flex items-center justify-between">
-                <div className="text-sm font-semibold text-zinc-100">
-                  Step 1
-                </div>
+                <div className="text-sm font-semibold text-zinc-100">Step 1</div>
                 <div className="rounded-full bg-violet-500/15 px-3 py-1 text-xs font-semibold text-violet-200 ring-1 ring-violet-400/25">
                   Stripe
                 </div>
               </div>
-              <h3 className="mt-4 text-xl font-semibold">
-                Connect Stripe
-              </h3>
+              <h3 className="mt-4 text-xl font-semibold">Connect Stripe</h3>
               <p className="mt-2 text-sm text-zinc-300">
-                TrustBeacon detects the right moments to ask for feedback,
-                so you only request reviews when it matters.
+                TrustBeacon detects the right moments to ask for feedback, so
+                you only request reviews when it matters.
               </p>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
               <div className="flex items-center justify-between">
-                <div className="text-sm font-semibold text-zinc-100">
-                  Step 2
-                </div>
+                <div className="text-sm font-semibold text-zinc-100">Step 2</div>
                 <div className="rounded-full bg-fuchsia-500/15 px-3 py-1 text-xs font-semibold text-fuchsia-200 ring-1 ring-fuchsia-400/25">
                   AI Invites
                 </div>
               </div>
-              <h3 className="mt-4 text-xl font-semibold">
-                Send AI Invites
-              </h3>
+              <h3 className="mt-4 text-xl font-semibold">Send AI Invites</h3>
               <p className="mt-2 text-sm text-zinc-300">
                 Personalized messaging encourages customers to leave a detailed,
                 honest review.
@@ -291,9 +292,7 @@ export default function Home() {
 
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
               <div className="flex items-center justify-between">
-                <div className="text-sm font-semibold text-zinc-100">
-                  Step 3
-                </div>
+                <div className="text-sm font-semibold text-zinc-100">Step 3</div>
                 <div className="rounded-full bg-sky-500/15 px-3 py-1 text-xs font-semibold text-sky-200 ring-1 ring-sky-400/25">
                   5-Star Results
                 </div>
@@ -343,8 +342,8 @@ export default function Home() {
                       TrustBeacon AI — $49/month
                     </h3>
                     <p className="mt-2 text-sm text-zinc-300">
-                      Everything you need to connect Stripe, send AI review invites,
-                      and grow your reputation.
+                      Everything you need to connect Stripe, send AI review
+                      invites, and grow your reputation.
                     </p>
 
                     <div className="mt-6 grid gap-3 text-sm">
@@ -409,7 +408,9 @@ export default function Home() {
                             />
                           </svg>
                         </span>
-                        <span>Designed for steady, reputation-building output</span>
+                        <span>
+                          Designed for steady, reputation-building output
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -418,23 +419,27 @@ export default function Home() {
                     <div className="text-sm font-semibold text-zinc-100">
                       Ready to start earning more 5-star reviews?
                     </div>
+
                     <div className="mt-4 flex items-end gap-3">
                       <div className="text-5xl font-semibold tracking-tight">
                         $49
                       </div>
-                      <div className="pb-1 text-sm text-zinc-400">per month</div>
+                      <div className="pb-1 text-sm text-zinc-400">
+                        per month
+                      </div>
                     </div>
 
-                    <a
-                      href="#pricing"
+                    <Link
+                      href="/login"
                       className="mt-6 block w-full rounded-full bg-white px-6 py-3 text-center text-sm font-semibold text-black transition hover:bg-zinc-200"
                       aria-label="Start TrustBeacon AI"
                     >
                       Start now
-                    </a>
+                    </Link>
+
                     <p className="mt-3 text-xs leading-relaxed text-zinc-400">
-                      By starting, you agree to receive review-invite communications
-                      related to your subscription.
+                      By starting, you agree to receive review-invite
+                      communications related to your subscription.
                     </p>
 
                     <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
@@ -442,8 +447,8 @@ export default function Home() {
                         For US businesses
                       </div>
                       <div className="mt-1 text-xs text-zinc-400">
-                        If you serve the US market, TrustBeacon is optimized for
-                        the review expectations customers respond to.
+                        If you serve the US market, TrustBeacon is optimized
+                        for the review expectations customers respond to.
                       </div>
                     </div>
                   </div>
@@ -468,31 +473,41 @@ export default function Home() {
 
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-              <div className="text-sm font-semibold">Does TrustBeacon replace my review process?</div>
+              <div className="text-sm font-semibold">
+                Does TrustBeacon replace my review process?
+              </div>
               <p className="mt-2 text-sm text-zinc-300">
-                It complements your workflow by automating the invite step after
-                customers pay through Stripe.
+                It complements your workflow by automating the invite step
+                after customers pay through Stripe.
               </p>
             </div>
+
             <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-              <div className="text-sm font-semibold">Will the invites sound like AI spam?</div>
+              <div className="text-sm font-semibold">
+                Will the invites sound like AI spam?
+              </div>
               <p className="mt-2 text-sm text-zinc-300">
-                The messaging is crafted to sound natural and helpful, with
-                a focus on encouraging honest feedback.
+                The messaging is crafted to sound natural and helpful, with a
+                focus on encouraging honest feedback.
               </p>
             </div>
+
             <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-              <div className="text-sm font-semibold">What do I need to start?</div>
+              <div className="text-sm font-semibold">
+                What do I need to start?
+              </div>
               <p className="mt-2 text-sm text-zinc-300">
-                A Stripe account and basic business info. TrustBeacon handles the rest.
+                A Stripe account and basic business info. TrustBeacon handles
+                the rest.
               </p>
             </div>
+
             <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
               <div className="text-sm font-semibold">Can I cancel?</div>
               <p className="mt-2 text-sm text-zinc-300">
                 Yes. Cancel anytime. Pricing stays simple at $49/month.
-              </p>
-            </div>
+          </p>
+        </div>
           </div>
         </section>
 
@@ -502,19 +517,29 @@ export default function Home() {
               © <Year /> TrustBeacon AI. All rights reserved.
             </div>
             <div className="flex flex-wrap items-center gap-4">
-              <a className="text-sm text-zinc-300 hover:text-zinc-100" href="#how-it-works">
+              <a
+                className="text-sm text-zinc-300 hover:text-zinc-100"
+                href="#how-it-works"
+              >
                 How it works
               </a>
-              <a className="text-sm text-zinc-300 hover:text-zinc-100" href="#pricing">
+              <a
+                className="text-sm text-zinc-300 hover:text-zinc-100"
+                href="#pricing"
+              >
                 Pricing
-              </a>
-              <a className="text-sm text-zinc-300 hover:text-zinc-100" href="#faq">
+          </a>
+          <a
+                className="text-sm text-zinc-300 hover:text-zinc-100"
+                href="#faq"
+              >
                 FAQ
-              </a>
-            </div>
+          </a>
+        </div>
           </div>
         </section>
       </main>
     </div>
   );
 }
+
