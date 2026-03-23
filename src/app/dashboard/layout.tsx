@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, History, Settings, LogOut, Menu, X } from "lucide-react";
 import { supabase } from "@/utils/supabase/client";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const menuItems = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -16,11 +17,23 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
   ];
 
+  // --- 🚪 FIXED LOGOUT FUNCTION ---
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+      // Session clear hone ke baad user ko login page par redirect karna
+      window.location.href = "/login"; 
+    } catch (err) {
+      console.error("Logout error:", err);
+      alert("Logout fail ho gaya, please try again.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white flex">
-      {/* Mobile Menu Button */}
+      {/* Mobile Menu Button (Only shows on small screens) */}
       <button 
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-zinc-900 rounded-lg"
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-zinc-900 rounded-lg border border-white/10"
         onClick={() => setSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
@@ -33,10 +46,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       `}>
         <div className="h-full flex flex-col p-6">
+          {/* Logo Section */}
           <div className="mb-10 px-2">
-            <h1 className="text-xl font-black tracking-tighter text-blue-500">TRUSTBEACON AI</h1>
+            <h1 className="text-xl font-black tracking-tighter text-blue-500 italic uppercase">
+              TrustBeacon AI
+            </h1>
           </div>
 
+          {/* Navigation Links */}
           <nav className="flex-1 space-y-2">
             {menuItems.map((item) => {
               const Icon = item.icon;
@@ -45,9 +62,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <Link 
                   key={item.name} 
                   href={item.href}
+                  onClick={() => setSidebarOpen(false)} // Close sidebar on mobile after click
                   className={`
                     flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium
-                    ${isActive ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20" : "text-zinc-500 hover:bg-white/5 hover:text-white"}
+                    ${isActive 
+                      ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20" 
+                      : "text-zinc-500 hover:bg-white/5 hover:text-white"}
                   `}
                 >
                   <Icon size={18} />
@@ -57,9 +77,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             })}
           </nav>
 
+          {/* Sidebar Logout Button (The one you wanted to fix) */}
           <button 
-            onClick={() => supabase.auth.signOut()}
-            className="flex items-center gap-3 px-4 py-3 text-zinc-500 hover:text-red-400 transition-colors mt-auto"
+            onClick={handleLogout}
+            className="flex items-center gap-3 px-4 py-3 text-zinc-500 hover:text-red-400 transition-colors mt-auto font-black uppercase text-[10px] tracking-widest border-t border-white/5 pt-6 cursor-pointer"
           >
             <LogOut size={18} />
             Logout
@@ -67,8 +88,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 w-full overflow-x-hidden">
+      {/* Main Content Area */}
+      <main className="flex-1 w-full overflow-x-hidden bg-black">
         {children}
       </main>
     </div>

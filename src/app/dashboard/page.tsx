@@ -7,7 +7,7 @@ import {
   PieChart, Pie, Cell, ResponsiveContainer, 
   Tooltip, Legend 
 } from 'recharts';
-import { Sparkles, Copy, Check, BarChart3, ArrowLeft, Download, Loader2 } from "lucide-react";
+import { Sparkles, Copy, Check, BarChart3, ArrowLeft, Download, Loader2, LogOut } from "lucide-react";
 import { toPng } from 'html-to-image';
 
 function DashboardContent() {
@@ -32,6 +32,19 @@ function DashboardContent() {
   const [generatingId, setGeneratingId] = useState<number | null>(null);
   const [replies, setReplies] = useState<{ [key: number]: string }>({});
   const [copiedId, setCopiedId] = useState<number | null>(null);
+
+  // --- 🚪 LOGOUT LOGIC (NEW) ---
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      // Session clear hone ke baad seedha login par feko
+      window.location.href = "/login"; 
+    } catch (err) {
+      console.error("Logout Error:", err);
+      alert("Logout fail ho gaya, refresh karke try karo.");
+    }
+  };
 
   // --- 🚀 PDF DOWNLOAD FIX ---
   const downloadPDF = async () => {
@@ -68,7 +81,7 @@ function DashboardContent() {
         body: JSON.stringify({ 
           reviewText, 
           businessName: businessData?.name || "our business",
-          sentiment: sentiment // Sending sentiment to AI
+          sentiment: sentiment 
         }),
         headers: { "Content-Type": "application/json" }
       });
@@ -169,7 +182,8 @@ function DashboardContent() {
               <h1 className="text-3xl font-black uppercase tracking-tighter">{businessData?.name || "Reputation Analyzer"}</h1>
               <p className="text-zinc-500 text-xs mt-1">AI-Powered Business Intelligence Report</p>
             </div>
-            <div className="flex gap-3">
+            
+            <div className="flex flex-wrap gap-3">
               {businessData && (
                 <button 
                   onClick={downloadPDF} disabled={isExporting}
@@ -179,11 +193,24 @@ function DashboardContent() {
                   {isExporting ? "GENERATING..." : "DOWNLOAD REPORT"}
                 </button>
               )}
-              <button onClick={() => router.push('/dashboard')} className="flex items-center gap-2 rounded-2xl bg-white/5 border border-white/10 px-6 py-4 text-xs font-black uppercase hover:bg-white/10 transition-all text-zinc-300">
+              
+              <button 
+                onClick={() => router.push('/dashboard')} 
+                className="flex items-center gap-2 rounded-2xl bg-white/5 border border-white/10 px-6 py-4 text-xs font-black uppercase hover:bg-white/10 transition-all text-zinc-300"
+              >
                 <ArrowLeft size={16} /> NEW SCAN
+              </button>
+
+              {/* Logout Button Fixed */}
+              <button 
+                onClick={handleLogout}
+                className="flex items-center gap-2 rounded-2xl bg-red-500/10 border border-red-500/20 px-6 py-4 text-xs font-black uppercase hover:bg-red-500 hover:text-white transition-all text-red-500 cursor-pointer"
+              >
+                <LogOut size={16} /> LOGOUT
               </button>
             </div>
           </div>
+
           {!businessParam && (
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <input 
@@ -238,7 +265,7 @@ function DashboardContent() {
               </ResponsiveContainer>
             </div>
 
-            {/* Reviews Section with AI Reply Fix */}
+            {/* Reviews Section */}
             <div className="space-y-6">
               <h3 className="text-2xl font-black italic text-zinc-400 border-l-8 border-blue-600 pl-4 uppercase tracking-tight">Recent Sentiment Analysis</h3>
               <div className="grid gap-6">
@@ -252,7 +279,6 @@ function DashboardContent() {
                     </div>
                     <p className="text-zinc-400 text-sm italic border-l border-white/10 pl-4 mb-6">"{rev.review_text}"</p>
                     
-                    {/* --- ✨ MAGIC REPLY UI --- */}
                     <div className="mt-4 pt-4 border-t border-white/5">
                       {replies[rev.id] ? (
                         <div className="bg-blue-500/5 border border-blue-500/20 p-4 rounded-xl relative animate-in fade-in zoom-in duration-300">
